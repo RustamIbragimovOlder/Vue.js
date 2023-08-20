@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lesson2Seminar</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- Задание 1. Установить расширение Vue VSCode Snippets Vue Language Features (Volar). Создать новый файл index.html, добавить структуру. Подключить vue к проекту. Вывести на экран Hello Vue -->
+    <div id="task1">
+      <h2 class="title">{{ message }}</h2>
+    </div>
+    <script>
+      new Vue({
+        el: '#task1',
+        data: {
+          message: 'Hello, VUE.JS',
+        },
+      });
+    </script>
+
+    <!-- Задание 2. Создать параграф, внутри которого будет отображаться текст “Товаров в корзине 0”. Создать кнопку “Купить”, при клике на которую, значение внутри параграфа будет увеличиваться на 1, при повторном нажатии на эту кнопку, счетчик не становится больше, добавить 4 таких кнопки. При нажатии на кнопку купить, необходимо чтобы текст внутри кнопки поменялся на “Товар в Корзине”. -->
+    <!-- Var1 -->
+    <div id="task2">
+      <p>Товаров в корзине: {{ counter }}</p>
+      <button
+        v-for="button in buttons"
+        @click="onClick(button)"
+        :key="button.id"
+      >
+        {{ button.text }}
+      </button>
+    </div>
+    <script>
+      new Vue({
+        el: '#task2',
+        data: {
+          counter: 0,
+          buttons: [
+            { id: 1, text: 'Купить', inCart: false },
+            { id: 2, text: 'Купить', inCart: false },
+            { id: 3, text: 'Купить', inCart: false },
+            { id: 4, text: 'Купить', inCart: false },
+            { id: 5, text: 'Купить', inCart: false },
+          ],
+        },
+        methods: {
+          onClick(button) {
+            if (!button.inCart) {
+              this.counter++;
+              button.inCart = true;
+              button.text = 'Товар в Корзине';
+            }
+          },
+        },
+      });
+    </script>
+
+    <!-- Var2 ЛУЧШЕ!!! -->
+    <div id="task2_1">
+      <p>Товаров в корзине: {{ counter }}</p>
+      <button
+        v-for="button in buttons"
+        @click="onClick(button)"
+        :key="button.id"
+      >
+        {{ button.inCart ? 'Товар в корзине' : 'Купить' }}
+      </button>
+    </div>
+    <script>
+      new Vue({
+        el: '#task2_1',
+        data: {
+          counter: 0,
+          buttons: [
+            { id: 1, inCart: false },
+            { id: 2, inCart: false },
+            { id: 3, inCart: false },
+            { id: 4, inCart: false },
+            { id: 5, inCart: false },
+          ],
+        },
+        methods: {
+          onClick(button) {
+            if (!button.inCart) {
+              this.counter++;
+              button.inCart = true;
+              button.text = 'Товар в Корзине';
+            }
+          },
+        },
+      });
+    </script>
+
+    <!-- Задание 3. Создать две кнопки “Мне исполнилось 14 лет” и “Мне еще нет 14 лет”. Если пользователь нажимает на первую кнопку, то должен отобразиться текст. “Можете заказать товар”. Если пользователь нажимает на вторую кнопку отображается текст “Доступ закрыт”. -->
+    <!-- Var1 -->
+    <div id="task3_1">
+      <button @click="clickForAccessYes()">Мне исполнилось 14 лет</button>
+      <button @click="clickForAccessNo()">Мне еще нет 14 лет</button>
+      <h3>{{ text }}</h3>
+    </div>
+    <script>
+      new Vue({
+        el: '#task3_1',
+        data: {
+          text: '',
+        },
+        methods: {
+          clickForAccessYes() {
+            this.text = 'Можете заказать товар';
+          },
+          clickForAccessNo() {
+            this.text = 'Доступ закрыт';
+          },
+        },
+      });
+    </script>
+
+    <!-- Var3 ЛУЧШЕ!!! -->
+    <div id="task3_2">
+      <button @click="answer(true)">Мне исполнилось 14 лет</button>
+      <button @click="answer(false)">Мне еще нет 14 лет</button>
+      <h3 v-if="isAllowed">Можете заказать товар</h3>
+      <h3 v-else>Доступ закрыт</h3>
+    </div>
+    <script>
+      new Vue({
+        el: '#task3_2',
+        data: {
+          isAllowed: false,
+        },
+        methods: {
+          answer(answer) {
+            this.isAllowed = answer;
+          },
+        },
+      });
+    </script>
+
+    <!-- Задание 4. Создать кнопку “Показать еще” при клике на которую появляется контент под кнопкой, при повторном клике, контент необходимо скрыть. -->
+    <!-- Var1 -->
+    <div id="task4_1">
+      <button @click="toggle">{{ isShown ? 'Скрыть' : 'Показать' }}</button>
+      <div v-if="isShown">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+        blanditiis consequatur dolore dolorum eligendi explicabo id, laboriosam
+        magnam maxime, necessitatibus nisi officiis optio quae quaerat quibusdam
+        sequi tempore veritatis. Quia?
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#task4_1',
+        data: {
+          isShown: false,
+        },
+        methods: {
+          toggle() {
+            this.isShown = !this.isShown;
+          },
+        },
+      });
+    </script>
+
+    <!-- Var2 ЛУЧШЕ!!! -->
+    <div id="task4_2">
+      <button @click="toggle">{{ isShown ? 'Скрыть' : 'Показать' }}</button>
+      <div v-show="isShown">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+        blanditiis consequatur dolore dolorum eligendi explicabo id, laboriosam
+        magnam maxime, necessitatibus nisi officiis optio quae quaerat quibusdam
+        sequi tempore veritatis. Quia?
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#task4_2',
+        data: {
+          isShown: false,
+        },
+        methods: {
+          toggle() {
+            this.isShown = !this.isShown;
+          },
+        },
+      });
+    </script>
+
+    <!-- Задание 5. Создайте кнопку "Генерировать случайное число". При клике на кнопку должно отображаться случайное число в заданном диапазоне (например, от 1 до 10). При клике на кнопку, если полученное значение меньше 5, необходимо вывести на страницу, “Число меньше 5”. Если число от 5 до 9, необходимо вывести “Число от 5 до 9”. Если число равно 10, необходимо вывести “Число равно 10”. -->
+
+    <!-- Var1 -->
+    <div id="task5_1">
+      <button @click="generateRandomNumber()">
+        Генерировать случайное число
+      </button>
+      <p>{{ randomNumber }}</p>
+      <p>{{ randomNumberText }}</p>
+    </div>
+    <script>
+      new Vue({
+        el: '#task5_1',
+        data: {
+          randomNumber: 0,
+          randomNumberText: '',
+        },
+        methods: {
+          generateRandomNumber() {
+            this.randomNumber = Math.round(Math.random() * 10);
+            if (this.randomNumber < 5) {
+              this.randomNumberText = 'Число < 5';
+            } else if (this.randomNumber >= 5 && this.randomNumber <= 9) {
+              this.randomNumberText = 'Число от 5 до 9';
+            } else {
+              this.randomNumberText = 'Число равно 10';
+            }
+          },
+        },
+      });
+    </script>
+
+    <!-- Var2 ЛУЧШЕ!!! -->
+    <div id="task5_2">
+      <button @click="generateRandomNumber()">
+        Генерировать случайное число
+      </button>
+      <p>{{ randomNumber }}</p>
+      <p>{{ randomNumberText }}</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#task5_2',
+        data: {
+          randomNumber: 0,
+        },
+        computed: {
+          randomNumberText() {
+            console.log('computed');
+            if (this.randomNumber < 5) {
+              return 'Число < 5';
+            } else if (this.randomNumber >= 5 && this.randomNumber <= 9) {
+              return 'Число от 5 до 9';
+            } else {
+              return 'Число равно 10';
+            }
+          },
+        },
+        methods: {
+          generateRandomNumber() {
+            this.randomNumber = Math.round(Math.random() * 10);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
