@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Vue.JS PT1</title>
+  </head>
+  <body>
+    <div class="task1" id="task1">
+      <p>Задача №1 Перевернуть</p>
+      <button @click="reversedMessage()">{{ message }}</button>
+    </div>
+
+    <div class="task2" id="task2">
+      <p>Задача №2 Добавить</p>
+      <button @click="addNewElement(newElement)">Добавить</button>
+      <p>Исходный список</p>
+      <ul id="listOfElements">
+        <li>Элемент исходного списка №1</li>
+        <li>Элемент исходного списка №2</li>
+        <li>Элемент исходного списка №3</li>
+      </ul>
+    </div>
+
+    <div class="task3" id="task3">
+      <p>Задача №3 Удалить</p>
+      <p>Список элементов. Нажмите на элемент для удаления.</p>
+      <ul>
+        <li v-for="(item, index) in items" v-on:click="removeItem(index)">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
