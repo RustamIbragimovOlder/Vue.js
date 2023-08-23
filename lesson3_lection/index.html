@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Методы и работа с данными</title>
+    <style>
+      .block {
+        width: 350px;
+        height: 200px;
+      }
+      .btn {
+        width: 35px;
+        height: 35px;
+      }
+      .like {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Директива v-on -->
+    <div id="app1">
+      <!-- 1: inline-выражение -->
+      <button v-on:click="c = a + b">button1</button>
+      <!-- 2: вызов метода обработчика с параметрами -->
+      <button v-on:click="doThat('hello', $event)">button2</button>
+      <!-- 3: вызов метода обработчика без параметров -->
+      <button v-on:click="doThis">button3</button>
+      <!-- поле ввода -->
+      <input type="text" @keyup.enter="send()" /><button @click="send()">
+        Отправить/Send
+      </button>
+    </div>
+    <script>
+      new Vue({
+        el: '#app1',
+        data: {},
+        methods: {
+          send() {
+            console.log('Отправили данные внутри input');
+          },
+        },
+      });
+    </script>
+    <!-- Директива v-bind -->
+    <div id="app2">
+      <button v-bind:id="id" v-bind:title="title">Кнопка</button>
+      <h2>link element</h2>
+      <!-- <a href="linkHref">my new link</a> -->
+      <a v-bind:href="linkHref">my new link</a>
+      <img :src="imgPhoto" alt="imgPhoto" />
+      <h2>Конструктор</h2>
+      <input type="number" v-model="blockWidth" />
+      <input type="number" v-model="blockHeight" />
+      <input type="text" v-model="blockColor" />
+      <!-- <div class="block" :style="styleBlock">Lorem ipsum dolor sit amet.</div> -->
+      <div class="block" :style="changeBlock">Lorem ipsum dolor sit amet.</div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app2',
+        data: {
+          blockWidth: 100,
+          blockHeight: 100,
+          blockColor: '#ccc',
+          id: '1',
+          title: 'button',
+          linkHref: 'product.html',
+          imgPhoto: 'photo.png',
+        },
+        methods: {},
+        computed: {
+          changeBlock() {
+            return {
+              width: `${this.blockWidth}px`,
+              height: `${this.blockHeight}px`,
+              backgroundColor: this.blockColor,
+            };
+          },
+        },
+      });
+    </script>
+    <!-- Директива v-model -->
+    <div id="app3">
+      <h2>{{ modelData }}</h2>
+      <input type="text" v-model.lazy="modelData" />
+      <button @click="headingText" class="heading__button">
+        click heading
+      </button>
+      <div class="display">
+        <input v-model="operand1" />
+        <input v-model="operand2" />
+        = {{ result }}
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app3',
+        data: {
+          modelData: '',
+          operand1: 0,
+          operand2: 0,
+          result: 0,
+        },
+        methods: {
+          headingText() {
+            if (this.modelData === '') {
+              this.modelData = 'Заголовок для блока';
+            }
+          },
+        },
+      });
+    </script>
+    <!-- Калькулятор -->
+    <div id="app4">
+      <h2>Калькулятор</h2>
+      <input type="number" v-model.number="firstNumber" />
+      <input type="number" v-model.number="secondNumber" />
+      = {{ result }}
+      <div>
+        <button @click="plus">+</button>
+        <button @click="minus">-</button>
+        <button @click="multiply">*</button>
+        <button @click="divide">/</button>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app4',
+        data: {
+          firstNumber: 0,
+          secondNumber: 0,
+          result: 0,
+        },
+        methods: {
+          plus() {
+            this.result = this.firstNumber + this.secondNumber;
+          },
+          minus() {
+            this.result = this.firstNumber - this.secondNumber;
+          },
+          multiply() {
+            this.result = this.firstNumber * this.secondNumber;
+          },
+          divide() {
+            this.result = this.firstNumber / this.secondNumber;
+          },
+        },
+      });
+    </script>
+    <!-- Отображение данных из массива (Отрисовка списков) -->
+    <!-- Директива v-for -->
+    <div id="app5">
+      <h2>List</h2>
+      <ul>
+        <li v-for="item in myCollection" :key="item.id">{{ item }}</li>
+      </ul>
+      <input type="text" v-model="newList" @keyup.enter="addItem" />
+      <ul>
+        <li v-for="(item, index) in myCollection" :key="item.id">
+          {{ index }} - {{ item }}
+        </li>
+      </ul>
+      <div v-for="(item, index) in myCollection" :key="item.id">
+        {{ index }} - {{ item }}
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app5',
+        data: {
+          myCollection: [1, 2, 3, 4, 5, 6, 7],
+          newList: '',
+        },
+        methods: {
+          addItem() {
+            this.myCollection.push(this.newList);
+          },
+        },
+      });
+    </script>
+    <!-- Методы -->
+    <div id="app6">
+      <article v-for="article in data" :key="article.id" class="article">
+        <h2 class="article__title">{{ article.title }}</h2>
+        <p class="article__text">{{ article.text }}</p>
+        <button
+          class="btn"
+          @click="likeToggle = !likeToggle"
+          :class="{like: likeToggle}"
+        >
+          like
+        </button>
+      </article>
+    </div>
+    <script>
+      new Vue({
+        el: '#app6',
+        data: {
+          likeToggle: false,
+          data: [
+            {
+              title: 'title text',
+              text: 'description text info element',
+            },
+            {
+              title: 'new title text',
+              text: 'new description text info element',
+            },
+          ],
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
