@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Lesson4-seminar2</title>
+  </head>
+  <body>
+    <!-- Task1 -->
+    <div id="task1">
+      <h2>Название продукта: {{ product.name }}</h2>
+      <p>Цена продукта: {{ product.price }} Скидка: {{ discount }}</p>
+      <img :src="product.photo" :alt="product.name" class="img" />
+      <div>
+        <button
+          type="button"
+          :disabled="product.hasDiscount"
+          @click="makeDiscount"
+        >
+          Использовать скидку
+        </button>
+      </div>
+    </div>
+    <!-- Task2 -->
+    <div id="task2">
+      <h2>List users</h2>
+      <ul>
+        <li v-for="user in users" :key="user.id">{{ user }}</li>
+      </ul>
+      <h4>Variant2</h4>
+      <div v-for="user in users" :key="user.id">
+        <h3>name {{ user.name }}</h3>
+        <h3>age {{ user.age }}</h3>
+      </div>
+    </div>
+    <!-- Task3 -->
+    <div id="task3" v-cloak>
+      <ul>
+        <li v-for="(product, index) in products" :key="index">
+          <input type="number" v-model="product.quantity" />
+          <input type="checkbox" v-model="product.isBought" />
+          <span>{{ product.name }}</span>
+        </li>
+      </ul>
+    </div>
+    <!-- Task4 -->
+    <div id="task4">
+      <!-- <div>
+        <h3>Имя:</h3>
+        <input type="text" v-model="newUser.name" />
+      </div>
+      <div>
+        <h3>Фамилия:</h3>
+        <input type="text" v-model="newUser.surname" />
+      </div>
+      <div>
+        <h3>Email:</h3>
+        <input type="email" v-model="newUser.email" />
+      </div>
+      <div>
+        <button @click="addUser">Добавить контакт</button>
+      </div>
+      <h2>List users</h2>
+      <ul>
+        <li v-for="user in users">{{ user }}</li>
+      </ul> -->
+      <p>Имя:</p>
+      <input type="text" v-model="firstname" @keyup.enter="addContact" />
+      <p>Фамилия:</p>
+      <input type="text" v-model="lastname" @keyup.enter="addContact" />
+      <p>Email:</p>
+      <input type="email" v-model="email" @keyup.enter="addContact" />
+      <button @click="addContact">Добавить контакт</button>
+      <ul>
+        <li
+          v-for="({firstname, lastname, email}, index) in contacts"
+          :key="index"
+        >
+          {{ firstname }} {{ lastname }} - {{ email }}
+        </li>
+      </ul>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
