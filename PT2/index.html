@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>PT2</title>
+  </head>
+  <body>
+    <!-- Задание VUE Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию). -->
+    <div id="pt2">
+      <h2>List products</h2>
+      <h3>Вариант 1 (с выпадающим списком)</h3>
+      <!-- Вариант 1 (с выпадающим списком) -->
+      <div class="filter-sort center">
+        <details class="filter">
+          <summary class="filter__summary">
+            <span class="filter__heading">Сортировать</span
+            ><svg
+              width="15"
+              height="10"
+              viewBox="0 0 15 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.833333 10H4.16667C4.625 10 5 9.625 5 9.16667C5 8.70833 4.625 8.33333 4.16667 8.33333H0.833333C0.375 8.33333 0 8.70833 0 9.16667C0 9.625 0.375 10 0.833333 10ZM0 0.833333C0 1.29167 0.375 1.66667 0.833333 1.66667H14.1667C14.625 1.66667 15 1.29167 15 0.833333C15 0.375 14.625 0 14.1667 0H0.833333C0.375 0 0 0.375 0 0.833333ZM0.833333 5.83333H9.16667C9.625 5.83333 10 5.45833 10 5C10 4.54167 9.625 4.16667 9.16667 4.16667H0.833333C0.375 4.16667 0 4.54167 0 5C0 5.45833 0.375 5.83333 0.833333 5.83333Z"
+                fill="black"
+              />
+            </svg>
+          </summary>
+          <div class="filter__content">
+            <a href="#" class="filter__link" @click="sortParam='priceUp'"
+              >По возрастанию цены</a
+            >
+            <a href="#" class="filter__link" @click="sortParam='priceDown'"
+              >По убыванию цены</a
+            >
+          </div>
+        </details>
+      </div>
+      <h3>Вариант 2 (просто с отдельными кнопками)</h3>
+      <!-- Вариант 2 (просто с отдельными кнопками) -->
+      <button @click="sortParam='priceUp'">
+        Сортировать по возрастанию цены
+      </button>
+      <button @click="sortParam='priceDown'">
+        Сортировать по убыванию цены
+      </button>
+      <table>
+        <tr>
+          <td>Идентификатор продукта</td>
+          <td>Название продукта</td>
+          <td>Цена продукта</td>
+        </tr>
+        <tr v-for="product in sortedList">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+        </tr>
+      </table>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
