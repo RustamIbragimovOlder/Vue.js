@@ -318,7 +318,7 @@ img {
     display: flex;
     flex-direction: row;
     gap: 25px;
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   &__item {
@@ -672,7 +672,7 @@ img {
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
-
+    flex-wrap: wrap;
     color: #4d5053;
     font-family: Jost;
     font-size: 16px;
@@ -686,6 +686,7 @@ img {
 
   &__header {
     margin-bottom: 30px;
+    margin-left: 412px;
     color: #292f36;
     font-family: DM Serif Display;
     font-size: 50px;
@@ -695,4 +696,58 @@ img {
     /* 62.5px */
     letter-spacing: 1px;
   }
+}
+
+.pagination {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin-top: 50px;
+  margin-left: 500px;
+}
+.pagination li {
+  display: inline;
+  text-align: center;
+}
+.pagination a {
+  float: left;
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 5px 12px;
+  color: black;
+  margin-left: -1px;
+  border: 1px solid #cda274;
+  line-height: 1.5;
+}
+.pagination a.active {
+  cursor: default;
+}
+.pagination a:active {
+  outline: none;
+}
+
+.modal-4 a {
+  margin: 0 5px;
+  padding: 10px;
+  width: 52px;
+  height: 52px;
+  line-height: 30px;
+  border-radius: 100%;
+  background-color: white;
+}
+.modal-4 a.prev {
+  border-radius: 50px 0 0 50px;
+  width: 100px;
+}
+.modal-4 a.next {
+  border-radius: 0 50px 50px 0;
+  width: 100px;
+}
+.modal-4 a:hover {
+  background-color: rgb(241, 238, 238);
+}
+.modal-4 a.active,
+.modal-4 a:active {
+  background-color: rgb(241, 238, 238);
 }
