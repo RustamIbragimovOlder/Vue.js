@@ -1,0 +1,94 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  margin-bottom: 134px;
+
+  &__main {
+    &_text {
+      width: 393px;
+      color: #4d5053;
+      font-family: 'Jost', sans-serif;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      /* 33px */
+      letter-spacing: 0.22px;
+      margin-top: 18px;
+      margin-bottom: 32px;
+    }
+
+    &_links {
+      display: flex;
+      width: 224px;
+      align-items: center;
+      gap: 54px;
+    }
+  }
+
+  &__pages {
+    display: flex;
+    width: 124px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+
+    &_title {
+      margin-bottom: 10px;
+      color: #292f36;
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 125%;
+    }
+
+    &_subtitle {
+      color: #4d5053;
+      font-family: 'Jost', sans-serif;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 300%;
+      /* 66px */
+      letter-spacing: 0.22px;
+    }
+  }
+
+  &__empty {
+    width: 120px;
+    height: 66px;
+  }
+
+  &__contact {
+    display: flex;
+    width: 258px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+    flex-shrink: 0;
+
+    &_title {
+      color: #292f36;
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 125%;
+      /* 31.25px */
+    }
+
+    &_address,
+    &_phone,
+    &_mail {
+      color: #4d5053;
+      font-family: 'Jost', sans-serif;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 300%;
+      letter-spacing: 0.22px;
+    }
+  }
+}
