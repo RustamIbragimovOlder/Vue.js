@@ -62,7 +62,6 @@ a {
 
 .blog {
     cursor: pointer;
-
     margin: 0 0 45px 0;
 
     &-content {
