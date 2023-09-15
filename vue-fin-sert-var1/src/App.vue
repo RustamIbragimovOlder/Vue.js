@@ -22,12 +22,19 @@
     <FooterComp /> -->
 
     <!-- Page 'project.html' -->
-    <HeaderComp />
+    <!-- <HeaderComp />
     <ProjectBannerComp />
     <ProjectCategoriesComp />
     <ProjectCatalogComp />
     <PaginationComp />
+    <FooterComp /> -->
+
+    <!-- Page 'project_details.html' -->
+    <HeaderComp />
+    <ProjectDetailsBannerComp />
+    <ProjectDetailsSlideShowComp />
     <FooterComp />
+
   </div>
 </template>
 
@@ -54,11 +61,17 @@
 // import FooterComp from './components/FooterComp.vue'
 
 // Page 'project.html'
+// import HeaderComp from './components/HeaderComp.vue'
+// import ProjectBannerComp from './components/ProjectBannerComp.vue';
+// import ProjectCategoriesComp from './components/ProjectCategoriesComp.vue';
+// import ProjectCatalogComp from './components/ProjectCatalogComp.vue';
+// import PaginationComp from './components/PaginationComp.vue'
+// import FooterComp from './components/FooterComp.vue'
+
+// Page 'project_details.html'
 import HeaderComp from './components/HeaderComp.vue'
-import ProjectBannerComp from './components/ProjectBannerComp.vue';
-import ProjectCategoriesComp from './components/ProjectCategoriesComp.vue';
-import ProjectCatalogComp from './components/ProjectCatalogComp.vue';
-import PaginationComp from './components/PaginationComp.vue'
+import ProjectDetailsBannerComp from './components/ProjectDetailsBannerComp.vue';
+import ProjectDetailsSlideShowComp from './components/ProjectDetailsSlideShowComp.vue';
 import FooterComp from './components/FooterComp.vue'
 
 export default {
@@ -83,13 +96,19 @@ export default {
     // BlogDetailsComp,
     // FooterComp,
     // Page 'project.html'
+    // HeaderComp,
+    // ProjectBannerComp,
+    // ProjectCategoriesComp,
+    // ProjectCatalogComp,
+    // PaginationComp,
+    // FooterComp,
+    // Page 'project_details.html'
     HeaderComp,
-    ProjectBannerComp,
-    ProjectCategoriesComp,
-    ProjectCatalogComp,
-    PaginationComp,
+    ProjectDetailsBannerComp,
+    ProjectDetailsSlideShowComp,
     FooterComp,
-  }
+  },
+
 }
 </script>
 
